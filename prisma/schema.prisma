@@ -2,9 +2,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
+
+ //  provider = "postgresql"
+ // url      = env("DATABASE_URL")
+ // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+ 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+  
 }
 
 model Example {
@@ -56,4 +62,11 @@ model VerificationToken {
 }
 
 
+model hundar {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  
+}
 
