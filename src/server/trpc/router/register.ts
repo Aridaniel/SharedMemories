@@ -1,8 +1,8 @@
 // @filename: server.ts
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import {router} from "../trpc"
  
+const t = initTRPC.create();
  
 interface User {
   id: string;
@@ -16,7 +16,7 @@ const userList: User[] = [
   },
 ];
  
-export const registerRouter = router({
+export const registerRouter = t.router({
   userById: t.procedure
     .input((val: unknown) => {
       if (typeof val === 'string') return val;
@@ -28,7 +28,7 @@ export const registerRouter = router({
  
       return user;
     }),
-  userCreate: procedure
+  userCreate: t.procedure
     .input(z.object({ name: z.string() }))
     .mutation((req) => {
       const id = `${Math.random()}`;

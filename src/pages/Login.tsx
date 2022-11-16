@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
+import Navbar from "../components/Navbar";
+
 
 interface LoginProps {}
 
@@ -57,6 +59,7 @@ const Login: FC<LoginProps> = ({}) => {
         
       </div>
     </>
+    
   );
 };
 

@@ -15,13 +15,13 @@ const trpc = createTRPCProxyClient<AppRouter>({
 
 function Client() {
   async function create() {
-    const createdUser = await trpc.userCreate.mutate({ name: "sachinraja" });
-    console.log("hallosmari", createdUser);
+
+    console.log("hallosmari", );
   }
 
   create();
 
-  return <div>hallo </div>;
+  return <div>hallo vinur </div>;
 }
 
 export default Client;

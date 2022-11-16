@@ -50,7 +50,11 @@ export const authOptions: NextAuthOptions = {
         }
       }
     })
-  ]
+  ],
+  secret: process.env.NEXTAUTH_SECRET,
+  session:{
+    stragety:"jwt",
+  },
 };
 
 export default NextAuth(authOptions);

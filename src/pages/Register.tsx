@@ -1,13 +1,14 @@
 import { FC } from "react";
-import { trpc } from "../../utils/trpc";
+import { trpc } from "../utils/trpc";
+import Navbar from "../components/Navbar";
 
 interface RegisterProps {}
 
 const Register: FC<RegisterProps> = ({}) => {
-
   return (
-    <div> Reçgister new user
-    </div>
+    <>
+      <div>REgister new user</div>
+    </>
   );
 };
 

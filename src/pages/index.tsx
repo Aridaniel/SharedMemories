@@ -3,9 +3,9 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { trpc } from "../utils/trpc";
+import Navbar from "../components/Navbar";
 
-/* import Login from "./components/Login"
-import Signup from "./components/Signup" */
+
 
 const Home: NextPage = () => {
   const hello = trpc.example.hello.useQuery({ text: "from ari tRPC" });
@@ -13,7 +13,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Shared Memories</title>
+        <title>Shared Memorie )=Ö=\–}s</title>
+        <meta></meta>
       </Head>
 
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center bg-sky-400 p-4">
@@ -26,11 +27,12 @@ const Home: NextPage = () => {
         </div>
         <AuthShowcase />
 
-        <Link href="./components/Register">
+        <Link href="./Register">
           <div className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white">
             Register
           </div>
         </Link>
+        <Navbar />
       </main>
     </>
   );
@@ -54,7 +56,7 @@ const AuthShowcase: React.FC = () => {
         <p className="text-2xl text-blue-500">{secretMessage}</p>
       )}
       <button
-        className="rounded border border-black-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
+        className="border-black-500 rounded border bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Login"}
