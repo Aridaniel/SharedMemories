@@ -7,9 +7,9 @@ interface PagenotfoundProps {}
 const Pagenotfound: FC<PagenotfoundProps> = ({}) => {
 
  
-    useEffect(()=>{
+  /*   useEffect(()=>{
             console.log("404 caaaaallllll")
-    })
+    }) */
 
 
 
