@@ -62,11 +62,5 @@ model VerificationToken {
 }
 
 
-model hundar {
-  identifier String
-  token      String   @unique
-  expires    DateTime
 
-  
-}
 

@@ -2,7 +2,7 @@
 import { router } from "../trpc";
 import { authRouter } from "./auth";
 import { registerRouter } from "./register";
-import Register from "../../../pages/Register";
+
 
 export const appRouter = router({
   auth: authRouter,

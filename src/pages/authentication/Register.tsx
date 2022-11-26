@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { trpc } from "../utils/trpc";
-import Navbar from "../components/Navbar";
+import { trpc } from "../../utils/trpc";
+import Navbar from "../../components/Navbar";
 
 interface RegisterProps {}
 

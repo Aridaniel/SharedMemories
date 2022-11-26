@@ -1,6 +1,6 @@
 import NextAuth, {  NextAuthOptions } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 
 // Prisma adapter for NextAuth, optional and can be removed
@@ -9,20 +9,26 @@ import { prisma } from "../../../server/db/client";
 import { env } from "../../../env/server.mjs";
 import Credentials from "next-auth/providers/credentials";
 import Email from "next-auth/providers/email";
+import { string } from "zod";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
-  callbacks: {
+   callbacks: {
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
       }
       return session;
     },
-  },
+  }, 
+ /*  session:{
+    strategy:"jwt"
+  }, */
+  
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   providers: [
+ 
 
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -32,35 +38,39 @@ export const authOptions: NextAuthOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" }
+        email: { label: "email", type: "email", placeholder: "your@mail.com" },
+        password: { label: "Password", type: "password" , placeholder: "password"}
       },
-      async authorize(credentials, req) {
+       authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-  
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null
-  
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+        const  { email, password } = credentials as {
+          email:string;
+          password:string;
+
         }
+  
+        
       }
-    })
+    }),
+    GoogleProvider({
+       clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET 
+   
+    }),  
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  session:{
-    stragety:"jwt",
-  },
+  
+ 
 };
 
-export default NextAuth(authOptions);
-function GoogleProvider(arg0: {
+ export default NextAuth(authOptions);
+
+
+
+/*   function GoogleProvider(arg0: {
   clientId: string | undefined;
   clientSecret: string | undefined;
 }): import("next-auth/providers").Provider {
   throw new Error("Function not implemented.");
-}
+}   */
+
+
