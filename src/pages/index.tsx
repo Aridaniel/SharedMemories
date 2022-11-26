@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Shared Memorie )=Ö=\–}s</title>
+        <title>Shared Memories</title>
         <meta></meta>
       </Head>
 
